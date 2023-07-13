@@ -1,7 +1,9 @@
 local diff = require('difference-of-squares')
 
-describe('difference-of-squares', function()
-  describe('square_of_sum', function()
+-- TODO neovim plenary: get better setup so that adding the '--' to the describe is not required
+
+describe('difference-of-squares --', function()
+  describe('square_of_sum --', function()
     it('should square the sum of the numbers up to the given number', function()
       assert.equal(225, diff.square_of_sum(5))
       assert.equal(3025, diff.square_of_sum(10))
@@ -9,7 +11,7 @@ describe('difference-of-squares', function()
     end)
   end)
 
-  describe('sum_of_squares', function()
+  describe('sum_of_squares --', function()
     it('should sum the squares of the numbers up to the given number', function()
       assert.equal(55, diff.sum_of_squares(5))
       assert.equal(385, diff.sum_of_squares(10))
@@ -17,7 +19,7 @@ describe('difference-of-squares', function()
     end)
   end)
 
-  describe('difference_of_squares', function()
+  describe('difference_of_squares --', function()
     it('should subtract sum of squares from square of sum', function()
       assert.equal(0, diff.difference_of_squares(0))
       assert.equal(170, diff.difference_of_squares(5))
