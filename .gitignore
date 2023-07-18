@@ -1,3 +1,6 @@
+# Exercism make
+*.out
+
 # Cmake
 CMakeLists.txt.user
 CMakeCache.txt
