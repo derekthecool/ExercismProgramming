@@ -4,14 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void swap(int *a, int *b);
-void swap(int *a, int *b)
-{
-    *a ^= *b;
-    *b ^= *a;
-    *a ^= *b;
-}
-
 // I could not get the build to work on windows
 // So a used podman run -it --rm -v ${pwd}:/test ubuntu
 // # apt update && apt install -y build-essential
@@ -23,13 +15,13 @@ bool is_armstrong_number(int candidate)
     unsigned int *numbers = malloc(sizeof(unsigned int) * array_size);
     if (numbers == NULL)
     {
-        printf("malloc for *numbers failed\n");
+        fprintf(stderr, "malloc for *numbers failed\n");
         exit(1);
     }
 
-    printf("Input number: %d\n", candidate);
+    fprintf(stderr, "Input number: %d\n", candidate);
 
-    int digit_count = 0;
+    int digits = 0;
 
     int copy = candidate;
 
@@ -37,50 +29,29 @@ bool is_armstrong_number(int candidate)
     do
     {
         int digit = copy % 10;
-        numbers[digit_count++] = digit;
-        printf("%d - \n", digit);
+        numbers[digits++] = digit;
         copy /= 10;
     } while (copy > 0);
 
-    printf("Initial numbers: ");
-    for (int i = 0; i < digit_count; i++)
-    {
-        printf("[%d]", numbers[i]);
-    }
-    puts("");
+    // Resize the array
+    numbers = realloc(numbers, digits);
 
-    int array_length = digit_count - 1;
-    for (int i = 0; i < digit_count; i++)
+    // Reverse the array
+    for (int i = 0, array_length = digits - 1; i < digits && i != array_length; i++, array_length--)
     {
-        if (i == array_length)
-        {
-            break;
-        }
         int temp = numbers[i];
         numbers[i] = numbers[array_length];
         numbers[array_length] = temp;
-        array_length--;
     }
 
-    numbers = realloc(numbers, digit_count);
-    printf("Calculated numbers: ");
-    for (int i = 0; i < digit_count; i++)
-    {
-        numbers[i] = pow(numbers[i], digit_count);
-        printf("[%d:%d]",i, numbers[i]);
-    }
-    puts("");
-
-
+    // Calculate the squares of each number inplace
     unsigned int total = 0;
-    for(int i = 0; i < digit_count; i++)
+    for (int i = 0; i < digits; i++)
     {
-        total += numbers[i];
+        total += pow(numbers[i], digits);
     }
 
-    printf("calculated: %d, candidate: %d\n\n", total, candidate);
+    fprintf(stderr, "calculated: %d, candidate: %d\n\n", total, candidate);
 
-    bool output = total == (unsigned int)candidate ? true : false;
-
-    return output;
+    return total == (unsigned int)candidate;
 }
