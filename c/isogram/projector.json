@@ -1,0 +1,15 @@
+[
+    {
+        "name": "My Project",
+        "group": "go",
+        "command": "podman run -it --rm -v ${pwd}:/test derekthecool/ubuntu_build_image bash -c \"cd /test && make\"",
+        // "dependencies": [
+        //     "project.go.Generate Stuff"
+        // ],
+        // "type": "delve",
+        // "request": "launch",
+        // "program": "${workspaceFolder}/main.go",
+        "cwd": "${workspaceFolder}",
+        "console": "integratedTerminal"
+    }
+]
