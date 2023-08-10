@@ -1,13 +1,10 @@
 module LuciansLusciousLasagna
 
-let expectedMinutesInOven =
-    0
+let expectedMinutesInOven = 40
 
-let remainingMinutesInOven minutes =
-    0
+let remainingMinutesInOven minutes = expectedMinutesInOven - minutes
 
-let preparationTimeInMinutes layers =
-    0
+let preparationTimeInMinutes layers = layers * 2
 
 let elapsedTimeInMinutes layers minutesDone =
-    0
+    preparationTimeInMinutes layers + minutesDone
