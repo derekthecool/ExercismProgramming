@@ -11,7 +11,7 @@ vim.defer_fn(function()
 	toggleterm.exec([[podman run -it --rm -v ${pwd}:/test derekthecool/ubuntu_build_image bash -c "cd /test && make"]])
 	end, { silent = true, desc = "podman run -it" })
 
-	vim.cmd("cd ./phone-number")
+	vim.cmd("cd ./clock")
 
 	vim.notify("Ready to run", vim.log.levels.INFO, { title = "Stimpack Notification" })
 end, delay_ms)
