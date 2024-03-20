@@ -2,7 +2,7 @@ Function Get-BobResponse() {
     <#
     .SYNOPSIS
     Bob is a lackadaisical teenager. In conversation, his responses are very limited.
-    
+
     .DESCRIPTION
     Bob is a lackadaisical teenager. In conversation, his responses are very limited.
 
@@ -16,10 +16,10 @@ Function Get-BobResponse() {
     anything.
 
     He answers 'Whatever.' to anything else.
-    
+
     .PARAMETER HeyBob
     The sentence you say to Bob.
-    
+
     .EXAMPLE
     Get-BobResponse -HeyBob "Hi Bob"
     #>
@@ -28,5 +28,19 @@ Function Get-BobResponse() {
         [string]$HeyBob
     )
 
-    Throw "Please implement this function"
+
+    # Need to use -cmatch instead of -match to get case sensitive matching
+    if($HeyBob -cmatch '(OK|[^A-Z])\?\s*$') {
+        return 'Sure.'
+    } elseif($HeyBob -cmatch '[A-Z]+\?\s*$') {
+        return "Calm down, I know what I'm doing!"
+    } elseif($HeyBob -cmatch '^\s*$') {
+        return 'Fine. Be that way!'
+    } elseif($HeyBob -cmatch '\b(?!OK|DMV)\p{Lu}{2,}\b') {
+        return 'Whoa, chill out!'
+    } else {
+        return 'Whatever.'
+    }
+
+    return $HeyBob
 }
