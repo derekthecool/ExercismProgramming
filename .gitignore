@@ -18,3 +18,5 @@ _deps
 bin
 obj
 TestResults
+
+.dart_tool
