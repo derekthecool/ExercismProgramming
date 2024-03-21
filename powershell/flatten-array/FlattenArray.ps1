@@ -17,5 +17,30 @@ Function Invoke-FlattenArray() {
     Param(
         [System.Object[]]$Array
     )
-    Throw "Please implement this function"
+
+
+    # function Flatten-Array {
+    #     param([array]$Array)
+    #     $flattenedArray = @()
+    #     foreach ($item in $Array) {
+    #         if ($item -is [array]) {
+    #             # Recursively flatten the array
+    #             $flattenedArray += Flatten-Array -Array $item
+    #         } elseif ($item -ne $null) {
+    #             $flattenedArray += $item
+    #         }
+    #     }
+    #     return $flattenedArray
+    # }
+
+    $flattenedArray = @()
+    foreach ($item in $Array) {
+        if ($item -is [array]) {
+            # Recursively flatten the array
+            $flattenedArray += Invoke-FlattenArray -Array $item
+        } elseif ($item -ne $null) {
+            $flattenedArray += $item
+        }
+    }
+    return $flattenedArray
 }
