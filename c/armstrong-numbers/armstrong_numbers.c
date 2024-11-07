@@ -6,14 +6,14 @@
 
 bool is_armstrong_number(int candidate)
 {
-    char number_string[15];
-    snprintf(number_string, 15, "%d", candidate);
+    char *number_string = malloc(15);
+    sprintf(number_string, "%d", candidate);
 
-    int sum = 0, index = 0;
+    int sum = 0;
     size_t digit_count = strlen(number_string);
-    while (number_string[index])
+    while (*number_string)
     {
-        sum += pow(number_string[index++] - '0', digit_count);
+        sum += pow(*(number_string++) - '0', digit_count);
     }
     return sum == candidate;
 }
