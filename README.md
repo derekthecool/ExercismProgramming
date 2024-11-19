@@ -1,2 +1,2 @@
 # ExercismProgramming
-My work through of Exercism programming challenges
+M work through of Exercism programming challenges
