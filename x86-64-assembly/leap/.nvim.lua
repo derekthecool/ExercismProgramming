@@ -25,7 +25,7 @@ vim.defer_fn(function()
 	-- vim.cmd('cd ./vendor')
 
 	-- Run initial start up commands in the terminal
-	vim.cmd("ToggleTerm direction=tab")
+	vim.cmd("ToggleTerm")
 
 	vim.notify("Ready to run", vim.log.levels.INFO, { title = ".nvim.lua commands" })
 end, delay_ms)
